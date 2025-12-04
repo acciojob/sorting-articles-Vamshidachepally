@@ -1,16 +1,77 @@
 <!DOCTYPE html>
-
-<html>
-
+<html lang="en">
 <head>
-	<link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alphabetical Article Sorter</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb') no-repeat center center/cover;
+      min-height: 100vh;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    ul {
+      list-style-type: square;
+      background-color: rgba(255, 255, 255, 0.8);
+      width: 400px;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }
+
+    li {
+      padding: 10px;
+      border-bottom: 1px solid #ddd;
+      font-size: 18px;
+    }
+
+    li:last-child {
+      border-bottom: none;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 24px;
+      color: #222;
+      background-color: rgba(255,255,255,0.8);
+      padding: 10px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+    }
+
+    .container {
+      text-align: center;
+    }
+  </style>
 </head>
-
 <body>
-	<!-- the entire body must be written by student -->
-    <script type="text/javascript" src="./script.js">
-</script>
+  <div class="container">
+    <h1>Alphabetical Article Sorter</h1>
+    <ul id="bands"></ul> <!-- ✅ changed from 'band' to 'bands' -->
+  </div>
 
+  <script>
+    const bands = [
+      'The Plot in You', 'The Devil Wears Prada', 'Pierce the Veil', 
+      'Norma Jean', 'The Bled', 'Say Anything', 'The Midway State',
+      'We Came as Romans', 'Counterparts', 'Oh, Sleeper', 
+      'A Skylit Drive', 'Anywhere But Here', 'An Old Dog'
+    ];
+
+    function strip(bandName) {
+      return bandName.replace(/^(a |the |an )/i, '').trim();
+    }
+
+    const sortedBands = bands.sort((a, b) => strip(a) > strip(b) ? 1 : -1);
+
+    document.getElementById('bands').innerHTML = 
+      sortedBands.map(band => `<li>${band}</li>`).join('');
+  </script>
 </body>
-
 </html>
